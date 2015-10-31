@@ -1,10 +1,10 @@
 # Rapid Game Development Using Cocos2d-Js
 
-This repository contains code samples for the book "Rapid Game Development Using Cocos2d-Js" available to sale on
+This repository contains code samples for the book "Rapid Game Development Using Cocos2d-Js" available for sale at
 
 http://leanpub.com/cocos2d
 
-## Instruction
+## Instructions
 
 ### Basic Setup
 
