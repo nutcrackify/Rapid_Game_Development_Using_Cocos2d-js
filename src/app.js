@@ -6,7 +6,7 @@ var BaseSampleLayer = cc.Layer.extend({
         //////////////////////////////
         // 1. super init first
         this._super();
-        
+
         return true;
     }
 });
@@ -20,25 +20,25 @@ var MainMenuLayer = cc.LayerColor.extend({
         // 1. super init first
         this._super(cc.color(255,205,210,255));
         this._itemMenu = new cc.Menu();
-        
+
         this._topBanner=new cc.DrawNode();
         this._topBanner.drawRect(cc.p(0,cc.director.getWinSize().height),
         cc.p(cc.director.getWinSize().width,
         cc.director.getWinSize().height/1.3),
         cc.color(244,67,54,255));
         this.addChild(this._topBanner);
-        
+
         this._topBanner1=new cc.DrawNode();
         this._topBanner1.drawRect(cc.p(0,cc.director.getWinSize().height),
         cc.p(cc.director.getWinSize().width,
         cc.director.getWinSize().height/1.04),
         cc.color(211,47,47,255),0);
         this.addChild(this._topBanner1);
-        
+
         var titleList=[new cc.LabelTTF('Rapid Game Development', "Arial", 32),
         new cc.LabelTTF('Using', "Arial", 32),
         new cc.LabelTTF('Cocos2d-js', "Arial", 32)];
-        
+
         for(var i=0;i<titleList.length;i++)
         {
             var title=titleList[i];
@@ -47,9 +47,9 @@ var MainMenuLayer = cc.LayerColor.extend({
             title.y=cc.director.getWinSize().height/1.1 - (i*LINE_SPACE);
             this.addChild(title);
         }
-      
-       
-        
+
+
+
         for (var i = 0, len = sampleList.length; i < len; i++) {
             var label = new cc.LabelTTF(sampleList[i].name+':'+sampleList[i].description, "Arial", 24);
             label.setColor(cc.color(0,0,0,255));
@@ -63,7 +63,7 @@ var MainMenuLayer = cc.LayerColor.extend({
         this._itemMenu.x = 0;
 	    this._itemMenu.y = 0;
         this.addChild(this._itemMenu);
-        
+
         if ('touches' in cc.sys.capabilities)
             cc.eventManager.addListener({
                 event: cc.EventListener.TOUCH_ALL_AT_ONCE,
@@ -88,11 +88,11 @@ var MainMenuLayer = cc.LayerColor.extend({
                 }
             }, this);
         }
-        
+
         return true;
     },
     onMenuCallback:function (sender) {
-        
+
         var idx = sender.getLocalZOrder() - 10000;
         var sample = sampleList[idx];
         var res = sample.resource || [];
@@ -132,7 +132,7 @@ var SubMenuLayer = cc.LayerColor.extend({
         cc.director.getWinSize().height/1.3),
         cc.color(244,67,54,255));
         this.addChild(this._topBanner);
-        
+
         this._topBanner1=new cc.DrawNode();
         this._topBanner1.drawRect(cc.p(0,cc.director.getWinSize().height),
         cc.p(cc.director.getWinSize().width,
@@ -148,7 +148,7 @@ var SubMenuLayer = cc.LayerColor.extend({
                 titleList.push(new cc.LabelTTF(titles[i], "Arial", 32))
             }
         }
-     
+
         for(var i=0;i<titleList.length;i++)
         {
             var title=titleList[i];
@@ -157,7 +157,7 @@ var SubMenuLayer = cc.LayerColor.extend({
             title.y=cc.director.getWinSize().height/1.1 - (i*LINE_SPACE);
             this.addChild(title);
         }
-     
+
         for (var i = 0, len = this.menuList.length; i < len; i++) {
             var label = new cc.LabelTTF(this.menuList[i].title, "Arial", 24);
             label.setColor(cc.color(0,0,0,255));
@@ -171,7 +171,7 @@ var SubMenuLayer = cc.LayerColor.extend({
         this._itemMenu.x = 0;
 	    this._itemMenu.y = 0;
         this.addChild(this._itemMenu);
-        
+
         if ('touches' in cc.sys.capabilities)
             cc.eventManager.addListener({
                 event: cc.EventListener.TOUCH_ALL_AT_ONCE,
@@ -196,11 +196,11 @@ var SubMenuLayer = cc.LayerColor.extend({
                 }
             }, this);
         }
-        
+
         return true;
     },
     onMenuCallback:function (sender) {
-        
+
         var idx = sender.getLocalZOrder() - 10000;
         var sample = this.menuList[idx];
         var res = sample.resource || [];
@@ -255,7 +255,7 @@ var BaseSampleScene = cc.Scene.extend({
                 var scene = new SubMenuScene();
                 if (scene) {
                     scene.runScene(obj);
-                  
+
                 }
             }, this);
         }
@@ -331,6 +331,13 @@ var sampleList = [
         linksrc:"src/chapter2/plistanimation.js",
         runSample:function () {
             return new PListAnimationScene();
+        }
+      },
+      {
+        title:"Sprite Batch Node",
+        linksrc:"src/chapter2/spritebatch.js",
+        runSample:function () {
+            return new SpriteBatchScene();
         }
       }]
     },
@@ -414,6 +421,13 @@ var sampleList = [
         runSample:function () {
             return new StopActionScene();
         }
+      },
+      {
+        title:"Schedulers and Update",
+        linksrc:"src/chapter6/schedulers.js",
+        runSample:function () {
+            return new SchedulersScene();
+        }
       }
       ]
     },
@@ -421,10 +435,73 @@ var sampleList = [
       name:'Chapter7',
       description:'Adding Physics',
       content: [{
-        title:"Chipmung Demo",
+        title:"Chipmunk Demo",
         linksrc:"src/chapter7/chipmungdemo.js",
         runSample:function () {
             return new ChipmungDemoScene();
+        }
+      },
+      {
+        title:"Pin Joint",
+        linksrc:"src/chapter7/pinjoint.js",
+        runSample:function () {
+            return new PinJointScene();
+        }
+      },
+      {
+        title:"Slide Joint",
+        linksrc:"src/chapter7/slidejoint.js",
+        runSample:function () {
+            return new SlideJointScene();
+        }
+      },
+      {
+        title:"Pivot Joint",
+        linksrc:"src/chapter7/pivotjoint.js",
+        runSample:function () {
+            return new PivotJointScene();
+        }
+      },
+      {
+        title:"Groove Joint",
+        linksrc:"src/chapter7/groovejoint.js",
+        runSample:function () {
+            return new GrooveJointScene();
+        }
+      },
+      {
+        title:"Damped Spring",
+        linksrc:"src/chapter7/dampedspring.js",
+        runSample:function () {
+            return new DampedSpringScene();
+        }
+      },
+      {
+        title:"Damped Rotary Spring",
+        linksrc:"src/chapter7/dampedrotaryspring.js",
+        runSample:function () {
+            return new DampedRotarySpringScene();
+        }
+      },
+      {
+        title:"Rotary Limit Joint",
+        linksrc:"src/chapter7/rotarylimitjoint.js",
+        runSample:function () {
+            return new RotaryLimitJointScene();
+        }
+      },
+      {
+        title:"Simple Motor",
+        linksrc:"src/chapter7/simplemotor.js",
+        runSample:function () {
+            return new SimpleMotorScene();
+        }
+      },
+      {
+        title:"Gear Joint",
+        linksrc:"src/chapter7/gearjoint.js",
+        runSample:function () {
+            return new GearJointScene();
         }
       }]
     },
@@ -437,7 +514,34 @@ var sampleList = [
         runSample:function () {
             return new DrawNodeDemoScene();
         }
+      },
+      {
+        title:"Accessing Localstorage",
+        linksrc:"src/chapter8/localstorage.js",
+        runSample:function () {
+            return new LocalStorageScene();
+        }
+      },
+      {
+        title:"Schedule a function",
+        linksrc:"src/chapter8/scheduler.js",
+        runSample:function () {
+            return new SchedulerScene();
+        }
+      },
+      {
+        title:"Accessing current language",
+        linksrc:"src/chapter8/language.js",
+        runSample:function () {
+            return new LanguageScene();
+        }
+      },
+      {
+        title:"Motion Trail",
+        linksrc:"src/chapter8/motiontrail.js",
+        runSample:function () {
+            return new MotionTrailScene();
+        }
       }]
     },
 ];
-

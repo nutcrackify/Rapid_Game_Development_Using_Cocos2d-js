@@ -12,7 +12,8 @@ var res = {
     ButtonImage:"res/button.png",
     ButtonImage_Selected:"res/button_selected.png",
     CheckBox_Normal:"res/checkbox_normal.png",
-    CheckBox_Selected:"res/checkbox_selected.png"
+    CheckBox_Selected:"res/checkbox_selected.png",
+    Tail:"res/streak.png"
 };
 
 var g_resources = [];
